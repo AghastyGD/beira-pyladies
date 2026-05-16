@@ -1,0 +1,54 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: AghastyGD/beira-pyladies
+  branch: main
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Titulo, name: title, widget: string }
+      - { label: Data, name: date, widget: datetime }
+      - { label: Resumo, name: summary, widget: string }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: events
+    label: Eventos
+    folder: src/content/events
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Titulo, name: title, widget: string }
+      - { label: Data, name: date, widget: datetime }
+      - { label: Resumo, name: summary, widget: string }
+      - { label: Conteudo, name: body, widget: markdown }
+
+  - name: pages
+    label: Paginas
+    files:
+      - label: Sobre
+        name: about
+        file: src/content/pages/about.md
+        fields:
+          - { label: Titulo, name: title, widget: string }
+          - { label: Resumo, name: summary, widget: string, required: false }
+          - { label: Conteudo, name: body, widget: markdown }
+      - label: Participar
+        name: community
+        file: src/content/pages/community.md
+        fields:
+          - { label: Titulo, name: title, widget: string }
+          - { label: Resumo, name: summary, widget: string, required: false }
+          - { label: Conteudo, name: body, widget: markdown }
