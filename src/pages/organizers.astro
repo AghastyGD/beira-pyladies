@@ -1,0 +1,20 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getOrganizers } from '../lib/getOrganizers';
+
+const organizers = await getOrganizers();
+---
+
+<PageLayout title="Organizadores">
+  <section class="section">
+    <h1>Organizadores</h1>
+    <div>
+      {organizers.map((organizer) => (
+        <article class="section">
+          <h2>{organizer.data.name}</h2>
+          <p>{organizer.data.role}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</PageLayout>

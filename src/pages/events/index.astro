@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { formatDate } from '../../lib/formatDate';
+
+const events = (await getCollection('events')).sort(
+  (first, second) => first.data.date.getTime() - second.data.date.getTime(),
+);
+---
+
+<PageLayout title="Eventos">
+  <section class="section">
+    <h1>Eventos</h1>
+  </section>
+
+  <section class="section card-grid">
+    {events.map((event) => (
+      <article class="content-card">
+        <p class="meta">{formatDate(event.data.date)}</p>
+        <h2><a href={`/events/${event.id.replace(/\.(md|mdx)$/, '')}`}>{event.data.title}</a></h2>
+        <p>{event.data.summary}</p>
+      </article>
+    ))}
+  </section>
+</PageLayout>

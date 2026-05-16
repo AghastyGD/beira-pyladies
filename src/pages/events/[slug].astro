@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+
+  return events.map((event) => ({
+    params: { slug: event.id.replace(/\.(md|mdx)$/, '') },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+
+<PageLayout title={event.data.title} description={event.data.summary}>
+  <article class="section">
+    <p>{event.data.date.toLocaleDateString('pt-BR')}</p>
+    <h1>{event.data.title}</h1>
+    <p>{event.data.summary}</p>
+    <Content />
+  </article>
+</PageLayout>

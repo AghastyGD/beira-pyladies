@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { formatDate } from '../../lib/formatDate';
+
+const posts = (await getCollection('blog')).sort(
+  (first, second) => second.data.date.getTime() - first.data.date.getTime(),
+);
+---
+
+<PageLayout title="Blog">
+  <section class="section">
+    <h1>Blog</h1>
+  </section>
+
+  <section class="section card-grid">
+    {posts.map((post) => (
+      <article class="content-card">
+        <p class="meta">{formatDate(post.data.date)}</p>
+        <h2><a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}>{post.data.title}</a></h2>
+        <p>{post.data.summary}</p>
+      </article>
+    ))}
+  </section>
+</PageLayout>

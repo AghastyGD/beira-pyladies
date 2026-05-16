@@ -1,0 +1,66 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import Button from '../components/ui/Button.astro';
+import { formatDate } from '../lib/formatDate';
+
+const events = (await getCollection('events'))
+  .sort((first, second) => first.data.date.getTime() - second.data.date.getTime())
+  .slice(0, 2);
+const posts = (await getCollection('blog'))
+  .sort((first, second) => second.data.date.getTime() - first.data.date.getTime())
+  .slice(0, 3);
+---
+
+<PageLayout>
+  <section class="hero-panel section">
+    <div class="hero-copy">
+      <h1>PyLadies Beira</h1>
+      <p class="lead">Eventos, partilha e apoio para mulheres em tecnologia.</p>
+      <div class="hero-actions">
+        <Button href="/events">Ver eventos</Button>
+        <Button href="/community" variant="secondary">Entrar na comunidade</Button>
+      </div>
+    </div>
+    <div class="hero-badge-card">
+      <h2>Participe de um encontro local</h2>
+      <p>Junte-se a nos.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Proximos eventos</h2>
+      </div>
+      <a href="/events">Ver todos</a>
+    </div>
+    <div class="card-grid">
+      {events.map((event) => (
+        <article class="content-card">
+          <p class="meta">{formatDate(event.data.date)}</p>
+          <h3><a href={`/events/${event.id.replace(/\.(md|mdx)$/, '')}`}>{event.data.title}</a></h3>
+          <p>{event.data.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Ultimos posts</h2>
+      </div>
+      <a href="/blog">Ver posts</a>
+    </div>
+    <div class="card-grid">
+      {posts.map((post) => (
+        <article class="content-card">
+          <p class="meta">{formatDate(post.data.date)}</p>
+          <h3><a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}`}>{post.data.title}</a></h3>
+          <p>{post.data.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</PageLayout>

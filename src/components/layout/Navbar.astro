@@ -1,0 +1,12 @@
+---
+import { navigation } from '../../constants/navigation';
+---
+
+<nav class="navbar">
+  <a class="brand" href="/">PyLadies Beira</a>
+  <ul>
+    {navigation.map((item) => (
+      <li><a href={item.href}>{item.label}</a></li>
+    ))}
+  </ul>
+</nav>

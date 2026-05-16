@@ -1,0 +1,12 @@
+---
+import { socialLinks } from '../../constants/socialLinks';
+---
+
+<footer class="footer">
+  <p>© {new Date().getFullYear()} PyLadies Beira</p>
+  <ul>
+    {socialLinks.map((item) => (
+      <li><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>
+    ))}
+  </ul>
+</footer>

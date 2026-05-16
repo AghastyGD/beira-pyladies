@@ -1,0 +1,17 @@
+backend:
+  name: test-repo
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: Titulo, name: title, widget: string }
+      - { label: Data, name: date, widget: datetime }
+      - { label: Resumo, name: summary, widget: string }
+      - { label: Conteudo, name: body, widget: markdown }
