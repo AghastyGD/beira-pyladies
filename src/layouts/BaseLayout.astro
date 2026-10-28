@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/theme.css';
 import { site } from '../constants/site';
 
 interface Props {
@@ -8,25 +7,35 @@ interface Props {
   description?: string;
 }
 
-const {
-  title,
-  description = site.description,
-} = Astro.props;
+const { title, description = site.description } = Astro.props;
 
-const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const pageTitle = title ? `${site.name} | ${title}` : site.name;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#fef9f0" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{pageTitle}</title>
   </head>
-  <body>
+  <body class="font-body-md text-on-surface">
     <slot />
   </body>
 </html>

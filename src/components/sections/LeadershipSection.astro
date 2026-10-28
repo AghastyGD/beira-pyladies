@@ -1,0 +1,33 @@
+---
+import { leaders } from '../../constants/home';
+---
+
+<section class="py-24">
+  <div class="text-center mb-16">
+    <h2 class="font-headline-md text-headline-md mb-4">Liderança Local</h2>
+    <p class="text-on-surface-variant max-w-2xl mx-auto">
+      Conheça a equipe que torna o PyLadies Beira uma realidade vibrante todos os dias.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+    {
+      leaders.map((leader) => (
+        <div class="text-center group">
+          <div class="aspect-square bg-surface-container rounded-full overflow-hidden mb-6 border-4 border-transparent group-hover:border-primary transition-all duration-300 shadow-sm">
+            <img
+              src={leader.image}
+              alt={leader.name}
+              width="512"
+              height="512"
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-headline-sm text-headline-sm">{leader.name}</h3>
+          <p class="text-label-md text-on-surface-variant">{leader.role}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

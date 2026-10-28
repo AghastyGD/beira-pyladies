@@ -1,3 +1,33 @@
-<div class="mobile-menu">
-  <p>Menu mobile em construcao.</p>
+---
+import { navigation } from '../../constants/navigation';
+
+const pathname = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href.includes('#')) return false;
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
+---
+
+<div
+  id="mobile-menu"
+  class="hidden lg:hidden border-t border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim px-margin-mobile md:px-margin-desktop py-4"
+>
+  <nav class="flex flex-col gap-1" aria-label="Navegação mobile">
+    {
+      navigation.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'py-3 border-b border-outline-variant/60 transition-colors',
+            isActive(item.href) ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-primary',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
 </div>

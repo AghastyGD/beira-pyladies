@@ -1,0 +1,53 @@
+---
+import { initiatives } from '../../constants/home';
+---
+
+<section class="py-20" id="iniciativas">
+  <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-12">
+    <div>
+      <h2 class="font-headline-md text-headline-md mb-2">Nossas Iniciativas</h2>
+      <p class="text-on-surface-variant">
+        Explore como estamos transformando o cenário tecnológico local.
+      </p>
+    </div>
+    <a
+      href="/events"
+      class="text-primary font-label-md inline-flex items-center gap-2 hover:underline"
+    >
+      Ver todos eventos
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+    {
+      initiatives.map((initiative) => (
+        <article
+          id={initiative.id}
+          class="initiative-card bg-surface-container-lowest border border-outline-variant p-8 flex flex-col hover:shadow-md scroll-mt-28"
+        >
+          <div
+            class:list={[
+              'w-12 h-12 flex items-center justify-center rounded-full mb-6',
+              initiative.iconClass,
+            ]}
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">
+              {initiative.icon}
+            </span>
+          </div>
+
+          <h3 class="font-headline-sm text-headline-sm mb-4">{initiative.title}</h3>
+
+          <p class="text-on-surface-variant font-body-md mb-8 flex-grow">
+            {initiative.description}
+          </p>
+
+          <a href={initiative.href} class="text-secondary font-label-md hover:underline">
+            Saber mais
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>

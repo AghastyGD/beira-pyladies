@@ -1,7 +1,7 @@
 export const navigation = [
-  { href: '/', label: 'Inicio' },
-  { href: '/about', label: 'Sobre' },
+  { href: '/', label: 'Início' },
   { href: '/events', label: 'Eventos' },
+  { href: '/#tech-talks', label: 'Tech Talks' },
+  { href: '/#code-sprints', label: 'Code Sprints' },
   { href: '/blog', label: 'Blog' },
-  { href: '/community', label: 'Participar' },
 ];

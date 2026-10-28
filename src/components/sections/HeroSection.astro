@@ -1,4 +1,65 @@
-<section class="section hero">
-  <h1>PyLadies Beira</h1>
-  <p>Comunidade para aprender, compartilhar e crescer juntas.</p>
+---
+import { nextEvent } from '../../constants/home';
+---
+
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter py-20 items-center">
+  <div class="md:col-span-7">
+    <span class="text-secondary font-label-md tracking-widest uppercase mb-4 block">
+      Comunidade Python
+    </span>
+
+    <h1
+      class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-6 leading-tight text-balance"
+    >
+      Empoderando mulheres em tecnologia através do Python.
+    </h1>
+
+    <p class="font-body-lg text-on-surface-variant mb-10 max-w-xl">
+      Somos um grupo internacional focado em ajudar mais mulheres a se tornarem participantes
+      ativas e líderes na comunidade de código aberto Python. Na Beira, cultivamos conhecimento,
+      rede de contatos e inovação tecnológica.
+    </p>
+
+    <div class="flex flex-wrap gap-4">
+      <a
+        href="/events"
+        class="inline-flex items-center justify-center bg-primary text-on-primary px-10 py-4 font-label-md hover:opacity-90 transition-all rounded-lg"
+      >
+        Ver Workshops
+      </a>
+      <a
+        href="/about"
+        class="inline-flex items-center justify-center border border-outline text-on-surface px-10 py-4 font-label-md hover:bg-surface-container transition-all rounded-lg"
+      >
+        Nossa História
+      </a>
+    </div>
+  </div>
+
+  <div class="md:col-span-5 relative">
+    <div
+      class="aspect-[4/5] bg-surface-container overflow-hidden rounded-xl shadow-sm rotate-2 hover:rotate-0 transition-transform duration-500"
+    >
+      <img
+        src="/images/home/hero-workshop.jpg"
+        alt="Sessão de workshop da PyLadies Beira"
+        width="512"
+        height="384"
+        loading="eager"
+        fetchpriority="high"
+        class="w-full h-full object-cover grayscale-[20%] contrast-[110%]"
+      />
+    </div>
+
+    <div
+      class="relative mt-6 md:absolute md:-bottom-6 md:-left-6 bg-tertiary-container p-8 rounded-xl shadow-xl max-w-[280px]"
+    >
+      <h2 class="font-headline-sm text-on-tertiary-container mb-2">Próximo Evento</h2>
+      <p class="text-on-tertiary-container opacity-90 font-label-md mb-4">{nextEvent.title}</p>
+      <div class="flex items-center gap-2 text-on-tertiary-container font-bold">
+        <span class="material-symbols-outlined text-sm" aria-hidden="true">calendar_today</span>
+        <span class="text-sm">{nextEvent.date}</span>
+      </div>
+    </div>
+  </div>
 </section>

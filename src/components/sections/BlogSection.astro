@@ -1,0 +1,127 @@
+---
+import { featuredPost, sidePosts } from '../../constants/home';
+---
+
+<section
+  class="py-20 bg-surface-container-low -mx-margin-mobile md:-mx-margin-desktop px-margin-mobile md:px-margin-desktop"
+>
+  <div class="max-w-container-max mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <div class="lg:col-span-8">
+        <h2 class="font-headline-md text-headline-md mb-8">Últimas do Blog</h2>
+
+        <article class="group">
+          <a href={featuredPost.href} class="block">
+            <div class="aspect-[16/9] overflow-hidden rounded-lg mb-6">
+              <img
+                src={featuredPost.image}
+                alt="Membras da PyLadies Beira a programar em conjunto"
+                width="512"
+                height="384"
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+
+            <span class="text-primary font-label-sm tracking-widest uppercase mb-2 block">
+              {featuredPost.category}
+            </span>
+
+            <h3
+              class="font-display-lg text-headline-md text-on-background mb-4 group-hover:text-primary transition-colors"
+            >
+              {featuredPost.title}
+            </h3>
+
+            <p class="text-on-surface-variant font-body-lg mb-4 line-clamp-2">
+              {featuredPost.summary}
+            </p>
+
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-outline-variant" aria-hidden="true"></div>
+              <div>
+                <p class="font-label-md text-on-background">{featuredPost.author}</p>
+                <p class="text-label-sm text-on-surface-variant">{featuredPost.meta}</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <div class="lg:col-span-4 flex flex-col gap-8">
+        <h2 class="font-headline-md text-headline-md lg:mb-8">Destaques</h2>
+
+        {
+          sidePosts.map((post, index) => (
+            <a
+              href={post.href}
+              class:list={[
+                'group block',
+                index < sidePosts.length - 1 && 'border-b border-outline-variant pb-6',
+              ]}
+            >
+              <span class="text-secondary font-label-sm uppercase mb-1 block">
+                {post.category}
+              </span>
+              <h3 class="font-headline-sm text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">
+                {post.title}
+              </h3>
+              <p class="text-label-md text-on-surface-variant">
+                Por {post.author}
+              </p>
+            </a>
+          ))
+        }
+
+        <div class="mt-4 p-6 bg-primary-container text-on-primary-container rounded-lg">
+          <h3 class="font-headline-sm mb-2">Newsletter</h3>
+          <p class="font-body-md mb-4">
+            Receba atualizações semanais sobre workshops e oportunidades.
+          </p>
+
+          <form class="flex flex-col gap-2" data-newsletter>
+            <label class="sr-only" for="newsletter-email">O teu e-mail</label>
+            <input
+              id="newsletter-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="teu@email.com"
+              class="bg-surface-container-highest/20 border border-white/30 text-white placeholder:text-white/80 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+            />
+            <button
+              type="submit"
+              class="bg-surface text-primary font-bold py-2 rounded hover:opacity-90 transition-all"
+            >
+              Subscrever
+            </button>
+            <p
+              class="hidden text-sm"
+              data-newsletter-message
+              role="status"
+              aria-live="polite"
+            >
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const newsletter = document.querySelector<HTMLFormElement>('[data-newsletter]');
+
+  newsletter?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const message = newsletter.querySelector<HTMLElement>('[data-newsletter-message]');
+    if (message) {
+      message.textContent = 'Inscrição recebida! Vais receber as novidades da comunidade.';
+      message.classList.remove('hidden');
+    }
+
+    newsletter.reset();
+  });
+</script>

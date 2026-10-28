@@ -1,12 +1,69 @@
 ---
 import { socialLinks } from '../../constants/socialLinks';
+
+const footerLinks = [
+  { href: '/#tech-talks', label: 'Tech Talks' },
+  { href: '/#code-sprints', label: 'Code Sprints' },
+  { href: '/events', label: 'Eventos' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const iconByLabel: Record<string, string> = {
+  GitHub: 'code',
+  Instagram: 'photo_camera',
+};
 ---
 
-<footer class="footer">
-  <p>© {new Date().getFullYear()} PyLadies Beira</p>
-  <ul>
-    {socialLinks.map((item) => (
-      <li><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>
-    ))}
-  </ul>
+<footer class="bg-surface-container-highest dark:bg-inverse-surface mt-20">
+  <div
+    class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-12 gap-gutter w-full max-w-container-max mx-auto"
+  >
+    <div class="mb-8 md:mb-0 text-center md:text-left">
+      <h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-surface-bright mb-2">
+        PyLadies Beira
+      </h2>
+      <p class="text-on-surface-variant font-body-md max-w-xs">
+        Conectadas para elevar o potencial tecnológico feminino em Moçambique.
+      </p>
+    </div>
+
+    <nav
+      class="flex flex-wrap gap-x-6 gap-y-2 md:gap-8 justify-center"
+      aria-label="Navegação do rodapé"
+    >
+      {
+        footerLinks.map((item) => (
+          <a
+            href={item.href}
+            class="text-on-surface-variant hover:text-secondary hover:underline decoration-secondary transition-opacity"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="mt-8 md:mt-0 flex flex-col items-center md:items-end">
+      <div class="flex gap-4 mb-4">
+        {
+          socialLinks.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+              class="text-secondary hover:opacity-70 transition-opacity"
+            >
+              <span class="material-symbols-outlined" aria-hidden="true">
+                {iconByLabel[social.label] ?? 'link'}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+      <p class="text-on-surface-variant font-body-md">
+        © {new Date().getFullYear()} PyLadies Beira
+      </p>
+    </div>
+  </div>
 </footer>
